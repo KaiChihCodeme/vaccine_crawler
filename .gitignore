@@ -1,0 +1,12 @@
+# ignore all log file
+*.log
+
+# ignore the env file
+.env
+
+# ignore the pycache
+__pycache__/
+*.pyc
+
+# ignore the test becauz it just a test
+test.py
