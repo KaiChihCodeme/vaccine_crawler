@@ -3,6 +3,13 @@ from selenium import webdriver
 import emailSender as es
 import time
 import logging
+import os
+from dotenv import load_dotenv
+
+# Load dotenv
+load_dotenv()
+
+to = os.getenv("RECEIVER_EMAIL")
 
 # driver = Chrome("/usr/bin/chromedriver")
 
@@ -29,7 +36,7 @@ driver.get(cgh_url)
 if (driver.find_element_by_id('msg').text != '目前已額滿'):
     # Send the Notification
     title = "國泰殘劑預約變動"
-    receiver = "juija870829@gmail.com"
+    receiver = to
     body = "爬蟲偵測程式發現，國泰殘劑網頁已發生變動\n 趕快去看: https://reg.cgh.org.tw/tw/booking/CovRemain.jsp"
     es.emailConfig(title, receiver, body)
 

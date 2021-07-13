@@ -3,6 +3,13 @@ from selenium import webdriver
 import emailSender as es
 import time
 import logging
+import os
+from dotenv import load_dotenv
+
+# Load dotenv
+load_dotenv()
+
+to = os.getenv("RECEIVER_EMAIL")
 
 # Logging set up
 # setting the logging
@@ -29,7 +36,7 @@ driver.get(mmh_url)
 if (driver.find_element_by_id('LblFull').text != '預約取號已額滿，依施打進度再公布下一階段開放預約取號時間。'):
     # Send the Notification
     title = "馬偕殘劑預約變動"
-    receiver = "juija870829@gmail.com"
+    receiver = to
     body = "爬蟲偵測程式發現，馬偕殘劑網頁已發生變動\n 趕快去看: https://wapps.mmh.org.tw/webhealthnumber/EMWAITdefault.aspx?HOSP=1WAIT"
     es.emailConfig(title, receiver, body)
 
