@@ -44,7 +44,7 @@ if __name__ == '__main__':
     options.add_argument('--disable-extensions')
     options.add_argument('--disable-dev-shm-usage')
 
-    driver = Chrome(options=options, executable_path="/usr/local/bin/chromedriver") # 暫時換掉位置，linux沒有local
+    driver = Chrome(options=options, executable_path="/usr/bin/chromedriver") # change if path changed
 
     # Logging set up
     # setting the logging
