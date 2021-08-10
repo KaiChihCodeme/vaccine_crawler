@@ -66,5 +66,5 @@ if __name__ == '__main__':
         # notify
         title = "國泰殘劑預約程式錯誤"
         receiver = to
-        body = "國泰殘劑程式發生錯誤\n 錯誤原因：%s" % e
+        body = "國泰殘劑程式發生錯誤\n\n 錯誤原因：\n%s" % e
         es.emailConfig(title, receiver, body)

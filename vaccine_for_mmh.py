@@ -7,14 +7,14 @@ import os
 from dotenv import load_dotenv
 
 def main(driver, to):
-    mmh_url = "https://mcloud.mmh.org.tw/DMZWEBHEALTHNUMA651/EMWAITdefault_N.aspx?HOSP=1WAIT"
+    mmh_url = "https://mcloud.mmh.org.tw/DMZWEBHEALTHNUMA651/EMWAITdefault.aspx?HOSP=1WAIT"
     driver.get(mmh_url)
 
-    if (driver.find_element_by_id('LblNotOpenInf').text != '預約取號已額滿，依施打進度再公布下一階段開放預約取號時間。'):
+    if (driver.find_element_by_id('LblNotOpenInfo').text != '預約取號已額滿，依施打進度再公布下一階段開放預約取號時間。'):
         # Send the Notification
         title = "馬偕殘劑預約變動"
         receiver = to
-        body = "爬蟲偵測程式發現，馬偕殘劑網頁已發生變動\n 趕快去看: https://wapps.mmh.org.tw/webhealthnumber/EMWAITdefault.aspx?HOSP=1WAIT"
+        body = "爬蟲偵測程式發現，馬偕殘劑網頁已發生變動\n 趕快去看: %s" % mmh_url
         es.emailConfig(title, receiver, body)
 
         # Logging
@@ -67,5 +67,5 @@ if __name__ == '__main__':
         # notify
         title = "馬偕殘劑預約程式錯誤"
         receiver = to
-        body = "馬偕殘劑程式發生錯誤\n 錯誤原因：%s" % e
+        body = "馬偕殘劑程式發生錯誤\n\n 錯誤原因：\n%s" % e
         es.emailConfig(title, receiver, body)
