@@ -59,5 +59,6 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:
+        print("I AM HERE")
         print(e)
         driver.quit()
