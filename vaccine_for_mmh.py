@@ -6,16 +6,11 @@ import logging
 import os
 from dotenv import load_dotenv
 
-def main(driver):
-    # Load dotenv
-    load_dotenv()
-
-    to = os.getenv("RECEIVER_EMAIL")
-
+def main(driver, to):
     mmh_url = "https://mcloud.mmh.org.tw/DMZWEBHEALTHNUMA651/EMWAITdefault_N.aspx?HOSP=1WAIT"
     driver.get(mmh_url)
 
-    if (driver.find_element_by_id('LblFull').text != '預約取號已額滿，依施打進度再公布下一階段開放預約取號時間。'):
+    if (driver.find_element_by_id('LblNotOpenInf').text != '預約取號已額滿，依施打進度再公布下一階段開放預約取號時間。'):
         # Send the Notification
         title = "馬偕殘劑預約變動"
         receiver = to
@@ -55,9 +50,22 @@ if __name__ == '__main__':
                         datefmt='%Y/%m/%d %H:%M:%S',
                         level=logging.INFO)
 
+    # Load dotenv
+    load_dotenv()
+    to = os.getenv("RECEIVER_EMAIL")
+
     try:
-        main(driver)
+        main(driver, to)
     except Exception as e:
+        # write in log
         print(e)
         logging.error(e)
+
+        # quit the chromedriver
         driver.quit()
+
+        # notify
+        title = "馬偕殘劑預約程式錯誤"
+        receiver = to
+        body = "馬偕殘劑程式發生錯誤\n 錯誤原因：%s" % e
+        es.emailConfig(title, receiver, body)
