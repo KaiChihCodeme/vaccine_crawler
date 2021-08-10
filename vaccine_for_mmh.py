@@ -13,7 +13,7 @@ to = os.getenv("RECEIVER_EMAIL")
 
 # Logging set up
 # setting the logging
-logname = 'vaccine_for_mmh.log'
+logname = '/home/kai_server/projects/selenium_crawler/vaccine_for_mmh.log'
 logging.basicConfig(filename=logname,
         filemode='a',
         format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
@@ -30,7 +30,7 @@ options.add_argument('--disable-dev-shm-usage')
 
 driver = Chrome(options=options, executable_path="/usr/bin/chromedriver")
 
-mmh_url = "https://wapps.mmh.org.tw/webhealthnumber/EMWAITdefault.aspx?HOSP=1WAIT"
+mmh_url = "https://mcloud.mmh.org.tw/DMZWEBHEALTHNUMA651/EMWAITdefault_N.aspx?HOSP=1WAIT"
 driver.get(mmh_url)
 
 if (driver.find_element_by_id('LblFull').text != '預約取號已額滿，依施打進度再公布下一階段開放預約取號時間。'):

@@ -14,7 +14,7 @@ to = os.getenv("RECEIVER_EMAIL")
 # driver = Chrome("/usr/bin/chromedriver")
 
 # setting the logging
-logname = 'vaccine_for_cgh.log'
+logname = '/home/kai_server/projects/selenium_crawler/vaccine_for_cgh.log'
 logging.basicConfig(filename=logname,
         filemode='a',
         format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
