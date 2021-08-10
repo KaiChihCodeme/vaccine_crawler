@@ -10,3 +10,6 @@ __pycache__/
 
 # ignore the test becauz it just a test
 test.py
+
+# ignore the pycharm ide
+.idea/
